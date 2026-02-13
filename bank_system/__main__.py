@@ -20,9 +20,24 @@ def withDraw(balance, amount):
     else:
         raise Exception("Invalid Option, Please enter SAVING/CURRENT ")
 
+# --- NEW FUNCTION ADDED ---
+def deposit(balance, amount):
+    if amount <= 0:
+        raise Exception("Deposit amount must be positive!")
+    balance += amount
+    print(f"Deposited: {amount}")
+    return balance
 
+# --- Existing flow ---
 showAccount()
 amount = float(input("Enter Amount to be Withdrawan :"))
 balance = withDraw(balance, amount)
 print("After withdraw new balance : ")
 print("Balance : ", balance)
+
+# --- Optional new flow to deposit ---
+deposit_choice = input("Do you want to deposit money? (yes/no): ").lower()
+if deposit_choice == "yes":
+    dep_amount = float(input("Enter amount to deposit: "))
+    balance = deposit(balance, dep_amount)
+    print("After deposit new balance : ", balance)
